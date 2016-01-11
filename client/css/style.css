@@ -1,0 +1,19 @@
+li {
+    list-style: none;
+}
+
+.main-container {
+    margin: auto;
+}
+
+.list-itm {
+    border: 1px solid #406bd6;
+    border-radius: 2px;
+    color: #2054A3;
+    height: 100px;
+    margin: 5px;
+    text-align: center;
+    width: 225px;
+}
+
+
