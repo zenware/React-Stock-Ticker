@@ -15,7 +15,7 @@ module.exports = React.createClass({
                     <br />
                     Price: { x.l }
                     <br />
-                    CHG: { x.c } ({x.cp}%)
+                    Change: { x.c } ({x.cp}%)
                 </li>
             ) }
         </ul>)

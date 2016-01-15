@@ -6,6 +6,11 @@ li {
     list-style: none;
 }
 
+.main {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
 .box {
     margin: 100px auto;
     width: 300px;
@@ -23,7 +28,7 @@ li {
     background: #2B303B;
     border: none;
     border-radius: 2px;
-    color: #63717f;
+    color: #63717F;
     float: left;
     font-size: 10pt;
     height: 40px;
@@ -60,7 +65,8 @@ li {
 
 .display-field {
     display: inline-block;
-    margin-top: 70px;
+    margin-left: 25%;
+    margin-right: 25%;
     width: 500px;
 }
 
@@ -68,8 +74,10 @@ li {
     border: 1px solid #DEE1EE;
     border-radius: 2px;
     color: #DEE1EE;
+    display: inline-block;
     height: 100px;
     margin: 5px;
+    position: relative;
     text-align: center;
     width: 225px;
     vertical-align: middle;
@@ -81,9 +89,9 @@ li {
 }
 
 .angle-red {
-    color: #A12B29;
+    color: #B92D31;
 }
 
 .angle-green {
-    color: #38A141;
+    color: #39B93C;
 }

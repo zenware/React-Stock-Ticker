@@ -35,11 +35,13 @@ module.exports = React.createClass({
         });
     },
     render: function() {
-        return (<div className="box">
-            <form className="container-1" onSubmit={ this.handleSubmit }> 
-                <span className="search-icon"><i className="fa fa-search"></i></span>
-                <input id="search" type="text" value={ this.state.symbol } onChange={ this.handleChange } />
-            </form>
+        return (<div className="main">
+            <div className="box">
+                <form className="container-1" onSubmit={ this.handleSubmit }> 
+                    <span className="search-icon"><i className="fa fa-search"></i></span>
+                    <input id="search" type="text" value={ this.state.symbol } onChange={ this.handleChange } />
+                </form>
+            </div>
             <DisplayField stocks={ this.state.stocks } />
         </div>);
     }
