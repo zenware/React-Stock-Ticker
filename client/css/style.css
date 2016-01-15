@@ -1,19 +1,89 @@
+body {
+    background: #343D46;
+}
+
 li {
     list-style: none;
 }
 
-.main-container {
-    margin: auto;
+.box {
+    margin: 100px auto;
+    width: 300px;
+    height: 40px;
 }
 
-.list-itm {
-    border: 1px solid #406bd6;
+.container-1 {
+    position: relative;
+    white-space: nowrap;
+    width: 300px;
+    vertical-align: middle;
+}
+
+.container-1 input#search {
+    background: #2B303B;
+    border: none;
     border-radius: 2px;
-    color: #2054A3;
+    color: #63717f;
+    float: left;
+    font-size: 10pt;
+    height: 40px;
+    padding-left: 45px;
+    width: 300px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+
+.container-1 input#search::-webkit-input-placeholder {
+    color: #65737e;
+}
+ 
+.container-1 input#search:-moz-placeholder { /* Firefox 18- */
+    color: #65737e;  
+}
+ 
+.container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: #65737e;  
+}
+ 
+.container-1 input#search:-ms-input-placeholder {  
+    color: #65737e;  
+}
+
+.container-1 .search-icon {
+    position: absolute;
+    top: 50%;
+    margin-left: 12px;
+    margin-top: 12px;
+    z-index: 1;
+    color: #4f5b66;
+}
+
+.display-field {
+    display: inline-block;
+    margin-top: 70px;
+    width: 500px;
+}
+
+.list-item {
+    border: 1px solid #DEE1EE;
+    border-radius: 2px;
+    color: #DEE1EE;
     height: 100px;
     margin: 5px;
     text-align: center;
     width: 225px;
+    vertical-align: middle;
 }
 
+.angle {
+    font-size: 15px;
+    margin-left: 10px;
+}
 
+.angle-red {
+    color: #A12B29;
+}
+
+.angle-green {
+    color: #38A141;
+}

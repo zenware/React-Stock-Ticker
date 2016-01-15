@@ -27,7 +27,6 @@ module.exports = React.createClass({
                     var a = res.text.split('');
                     var data = JSON.parse(a.slice(6, a.length - 2).join(''));
                     stocks.push(data);
-                    console.log(stocks);
                 }
             });
         this.setState({
@@ -36,10 +35,10 @@ module.exports = React.createClass({
         });
     },
     render: function() {
-        return (<div className="main-container">
-            <form onSubmit={ this.handleSubmit }> 
-                <input type="text" value={ this.state.symbol } onChange={ this.handleChange } />
-                <button>Search</button>
+        return (<div className="box">
+            <form className="container-1" onSubmit={ this.handleSubmit }> 
+                <span className="search-icon"><i className="fa fa-search"></i></span>
+                <input id="search" type="text" value={ this.state.symbol } onChange={ this.handleChange } />
             </form>
             <DisplayField stocks={ this.state.stocks } />
         </div>);
