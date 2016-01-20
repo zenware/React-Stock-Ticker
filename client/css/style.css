@@ -1,5 +1,6 @@
 body {
     background: #343D46;
+    font-family: 'Roboto', sans-serif;
 }
 
 li {
@@ -75,6 +76,7 @@ li {
     border-radius: 2px;
     color: #DEE1EE;
     display: inline-block;
+    font-size: 14px;
     height: 100px;
     margin: 5px;
     position: relative;
