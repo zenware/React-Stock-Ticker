@@ -4,8 +4,8 @@ import DisplayField from './DisplayField'
 
 module.exports = React.createClass({
     componentDidMount: function() {
-        var ping = Math.floor(Math.random() * 7000);
-        setTimeout(this.updateStocks, ping);
+        var ping = Math.floor(Math.random() * 10000);
+        setInterval(this.updateStocks, (ping > 5000 ? ping : 7500));
     },
     getInitialState: function() {
         return {
@@ -22,7 +22,6 @@ module.exports = React.createClass({
         var queryURL = 'https://finance.google.com/finance/info?client=ig&q=';
         var symbol = this.state.symbol.toUpperCase();
         var stocks = this.state.stocks;
-        var ping = Math.floor(Math.random() * 7000);
         var self = this;
         e.preventDefault();
         request
@@ -39,13 +38,13 @@ module.exports = React.createClass({
                     });
                 }
             });
-
     },
     updateStocks: function() {
         var queryURL = 'https://finance.google.com/finance/info?client=ig&q=';
         var stocks = this.state.stocks;
         var updatedStocks = [];
-        stock.forEach(function(x) {
+        var self = this;
+        stocks.forEach(function(x) {
             request
                 .get(queryURL + x.t)
                 .end(function(err, res) {
@@ -54,12 +53,13 @@ module.exports = React.createClass({
                         var a = res.text.split('');
                         var data = JSON.parse(a.slice(6, a.length - 2).join(''));
                         updatedStocks.push(data);
+                        self.setState({
+                            stocks: updatedStocks
+                        });
                     }
                 });
         });
-        this.setState({
-            stocks: updatedStocks
-        });
+        console.log('This is firing');
     },
     render: function() {
         return (<div className="main">
