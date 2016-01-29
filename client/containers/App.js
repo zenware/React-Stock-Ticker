@@ -59,7 +59,6 @@ module.exports = React.createClass({
                     }
                 });
         });
-        console.log('This is firing');
     },
     render: function() {
         return (<div className="main">

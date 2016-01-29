@@ -7,6 +7,15 @@ li {
     list-style: none;
 }
 
+a {
+    color: #DEE1EE;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #63717F;
+}
+
 .main {
     margin-left: 20%;
     margin-right: 20%;
