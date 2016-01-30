@@ -39,26 +39,39 @@ module.exports = React.createClass({
                 }
             });
     },
+    getSymbols: function (array) {
+        var stocks = "";
+        for (var i = 0; i < array.length; ++i) {
+            if (i == array.length - 1) {
+                stocks += array[i].t;
+                break;
+            }
+            stocks += array[i].t + ',';
+        }
+        return stocks;
+    },
     updateStocks: function() {
-        var queryURL = 'https://finance.google.com/finance/info?client=ig&q=';
         var stocks = this.state.stocks;
+        var batch = this.getSymbols(stocks);
+        console.log(batch);
+        var queryURL = 'https://finance.google.com/finance/info?client=ig&q=' + batch;
+        console.log(queryURL);
         var updatedStocks = [];
         var self = this;
-        stocks.forEach(function(x) {
-            request
-                .get(queryURL + x.t)
-                .end(function(err, res) {
-                    if (err) { console.log(err); }
-                    else {
-                        var a = res.text.split('');
-                        var data = JSON.parse(a.slice(6, a.length - 2).join(''));
-                        updatedStocks.push(data);
-                        self.setState({
-                            stocks: updatedStocks
-                        });
-                    }
-                });
-        });
+        request
+            .get(queryURL)
+            .end(function(err, res) {
+                if (err) { console.log(err); }
+                else {
+                    var a = res.text.split('');
+                    var data = a.slice(3, a.length).join('');
+                    updatedStocks.push(JSON.parse(data));
+                    self.setState({
+                        stocks: updatedStocks
+                    });
+                }
+            });
+        console.log('This is firing');
     },
     render: function() {
         return (<div className="main">
