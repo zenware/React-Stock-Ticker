@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import request from 'superagent'
 import DisplayField from './DisplayField'
+import Footer from './Footer'
 
 module.exports = React.createClass({
     componentDidMount: function() {
@@ -40,8 +41,9 @@ module.exports = React.createClass({
             });
     },
     getSymbols: function (array) {
+        var len = array.length > 6 ? 6 : array.length;
         var stocks = "";
-        for (var i = 0; i < array.length; ++i) {
+        for (var i = 0; i < len; ++i) {
             if (i == array.length - 1) {
                 stocks += array[i].t;
                 break;
@@ -53,10 +55,7 @@ module.exports = React.createClass({
     updateStocks: function() {
         var stocks = this.state.stocks;
         var batch = this.getSymbols(stocks);
-        console.log(batch);
         var queryURL = 'https://finance.google.com/finance/info?client=ig&q=' + batch;
-        console.log(queryURL);
-        var updatedStocks = [];
         var self = this;
         request
             .get(queryURL)
@@ -65,23 +64,29 @@ module.exports = React.createClass({
                 else {
                     var a = res.text.split('');
                     var data = a.slice(3, a.length).join('');
-                    updatedStocks.push(JSON.parse(data));
+                    // Add conditional to only display last 6 stocks
                     self.setState({
-                        stocks: updatedStocks
+                        stocks: JSON.parse(data)
                     });
                 }
             });
         console.log('This is firing');
+    },
+    validateInput: function() {
+        // To be added
     },
     render: function() {
         return (<div className="main">
             <div className="box">
                 <form className="container-1" onSubmit={ this.handleSubmit }> 
                     <span className="search-icon"><i className="fa fa-search"></i></span>
-                    <input id="search" type="text" value={ this.state.symbol } onChange={ this.handleChange } />
+                    <input id="search" type="text" 
+                        value={ this.state.symbol } onChange={ this.handleChange }
+                        placeholder="Search..." />
                 </form>
             </div>
             <DisplayField stocks={ this.state.stocks } />
+            <Footer />
         </div>);
     }
 });
