@@ -20,16 +20,29 @@ module.exports = React.createClass({
         });
     },
     handleSubmit: function(e) {
+        e.preventDefault();
         var queryURL = 'https://finance.google.com/finance/info?client=ig&q=';
         var symbol = this.state.symbol.toUpperCase();
         var stocks = this.state.stocks;
         var self = this;
-        e.preventDefault();
+        if (!this.validateInput(symbol)) {
+            alert("It already exists!");
+            return this.setState({
+                symbol: ''
+            });
+        }
         request
             .get(queryURL + symbol)
             .end(function(err, res) {
-                if (err) { console.log(err); }
-                else {
+                if (err) { 
+                    console.log(err); 
+                } 
+                if (res.status === 400) {
+                    alert("Stock symbol doesn't exist, try another one.");
+                    self.setState({
+                        symbol: ''
+                    });
+                } else {
                     var a = res.text.split('');
                     var data = JSON.parse(a.slice(6, a.length - 2).join(''));
                     stocks.push(data);
@@ -40,10 +53,10 @@ module.exports = React.createClass({
                 }
             });
     },
-    getSymbols: function (array) {
-        var len = array.length > 6 ? 6 : array.length;
+    formatSymbols: function (array) {
+        // var len = array.length > 6 ? 6 : array.length;
         var stocks = "";
-        for (var i = 0; i < len; ++i) {
+        for (var i = 0; i < array.length; ++i) {
             if (i == array.length - 1) {
                 stocks += array[i].t;
                 break;
@@ -54,7 +67,7 @@ module.exports = React.createClass({
     },
     updateStocks: function() {
         var stocks = this.state.stocks;
-        var batch = this.getSymbols(stocks);
+        var batch = this.formatSymbols(stocks);
         var queryURL = 'https://finance.google.com/finance/info?client=ig&q=' + batch;
         var self = this;
         request
@@ -72,8 +85,17 @@ module.exports = React.createClass({
             });
         console.log('This is firing');
     },
-    validateInput: function() {
-        // To be added
+    validateInput: function(input) {
+        var stocks = this.state.stocks;
+        var hash = {};
+        for (var i = 0; i < stocks.length; ++i) {
+            hash[stocks[i].t] = null;
+        }
+        if (input in hash) {
+            return false;
+        } else {
+            return true;
+        }
     },
     render: function() {
         return (<div className="main">
