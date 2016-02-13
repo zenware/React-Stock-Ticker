@@ -4,7 +4,8 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div className="footer-section">
-                Stock Symbol Search Engine Written in React
+                <p>Stock Symbol Search Engine Written in React</p>
+                <p>Click on the stock symbol to retrieve more information</p>
             </div>
         );
     }

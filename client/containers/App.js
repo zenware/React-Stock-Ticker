@@ -45,7 +45,8 @@ module.exports = React.createClass({
                 } else {
                     var a = res.text.split('');
                     var data = JSON.parse(a.slice(6, a.length - 2).join(''));
-                    stocks.push(data);
+                    stocks.unshift(data);
+                    if (stocks.length > 6) stocks = stocks.slice(0, 6);
                     self.setState({
                         symbol: '',
                         stocks: stocks
@@ -54,7 +55,6 @@ module.exports = React.createClass({
             });
     },
     formatSymbols: function (array) {
-        // var len = array.length > 6 ? 6 : array.length;
         var stocks = "";
         for (var i = 0; i < array.length; ++i) {
             if (i == array.length - 1) {
@@ -83,19 +83,16 @@ module.exports = React.createClass({
                     });
                 }
             });
-        console.log('This is firing');
+        // console.log('This is firing');
     },
     validateInput: function(input) {
         var stocks = this.state.stocks;
-        var hash = {};
         for (var i = 0; i < stocks.length; ++i) {
-            hash[stocks[i].t] = null;
+            if (input === stocks[i].t) {
+                return false;
+            }
         }
-        if (input in hash) {
-            return false;
-        } else {
-            return true;
-        }
+        return true;
     },
     render: function() {
         return (<div className="main">
