@@ -4,12 +4,12 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './client/index.js'
+    'client/index.js'
   ],
   output: {
-    path: path.join(__dirname, './client'),
+    path: path.join(__dirname, 'client'),
     filename: 'bundle.js',
-    publicPath: './client/'
+    publicPath: '/client/'
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
@@ -31,13 +31,13 @@ module.exports = {
     loaders: [
       { test: /\.jsx$/,
         loader: 'babel',
-        include: path.join(__dirname, './client') },
+        include: path.join(__dirname, 'client') },
       { test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/ },
       { test: /\.scss?$/,
         loader: 'style!css!sass',
-        include: path.join(__dirname, './client/css') },
+        include: path.join(__dirname, 'client/css') },
     ]
   }
 }
