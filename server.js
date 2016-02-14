@@ -20,7 +20,7 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 
-app.configure(function () {
+app.configure('production', function () {
     app.use(allowCrossDomain);
 });
 
