@@ -69,7 +69,7 @@ module.exports = React.createClass({
     updateStocks() {
         var stocks = this.state.stocks;
         var batch = this.formatSymbols(stocks);
-        var queryURL = 'https://finance.google.com/finance/info;
+        var queryURL = 'https://finance.google.com/finance/info';
         var self = this;
         request
             .get(queryURL)
