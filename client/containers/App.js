@@ -21,7 +21,7 @@ module.exports = React.createClass({
     },
     handleSubmit(e) {
         e.preventDefault();
-        var queryURL = 'https://finance.google.com/finance/info?client=ig&q=';
+        var queryURL = 'https://finance.google.com/finance/info';
         var symbol = this.state.symbol.toUpperCase();
         var stocks = this.state.stocks;
         var self = this;
@@ -32,7 +32,8 @@ module.exports = React.createClass({
             });
         }
         request
-            .get(queryURL + symbol)
+            .get(queryURL)
+	    .query({client: 'ig', q: symbol})
             .end(function(err, res) {
                 if (err) { 
                     console.log(err); 
@@ -43,7 +44,7 @@ module.exports = React.createClass({
                         symbol: ''
                     });
                 } else {
-                    var a = res.text.split('');
+                    var a = res.text.substr(4, response.length).split('');
                     var data = JSON.parse(a.slice(6, a.length - 2).join(''));
                     stocks.unshift(data);
                     if (stocks.length > 6) stocks = stocks.slice(0, 6);
