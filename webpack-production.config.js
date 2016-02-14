@@ -4,12 +4,12 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './client/index.js'
+    './src/entry'
   ],
   output: {
     path: path.join(__dirname, './client'),
     filename: 'bundle.js',
-    publicPath: './client/'
+    publicPath: '/public/'
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
