@@ -6,7 +6,7 @@ var app = express();
 var isDevelopment = (process.env.NODE_ENV !== 'production');
 var static_path = path.join(__dirname, 'client');
 
-app.configure(() => {
+app.configure(function () {
     app.use(allowCrossDomain);
 });
 
