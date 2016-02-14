@@ -4,12 +4,12 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './client/index'
+    './client/index.js'
   ],
   output: {
-    path: path.join(__dirname, 'client'),
+    path: path.join(__dirname, './client'),
     filename: 'bundle.js',
-    publicPath: '/client/'
+    publicPath: './client/'
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
@@ -18,6 +18,10 @@ module.exports = {
       compress: {
         warnings: false
       }
+    }),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
     })
   ],
   resolve: {
@@ -27,13 +31,13 @@ module.exports = {
     loaders: [
       { test: /\.jsx$/,
         loader: 'babel',
-        include: path.join(__dirname, 'src') },
+        include: path.join(__dirname, './client') },
       { test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/ },
       { test: /\.scss?$/,
         loader: 'style!css!sass',
-        include: path.join(__dirname, 'css') },
+        include: path.join(__dirname, './client/css') },
     ]
   }
 }
