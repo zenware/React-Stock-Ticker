@@ -1,0 +1,5 @@
+{
+  "name": "React-Stock-Ticker",
+  "image": "heroku/nodejs",
+  "addons": []
+}
