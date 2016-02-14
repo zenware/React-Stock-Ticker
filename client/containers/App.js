@@ -4,22 +4,22 @@ import DisplayField from './DisplayField'
 import Footer from './Footer'
 
 module.exports = React.createClass({
-    componentDidMount: function() {
+    componentDidMount() {
         var ping = Math.floor(Math.random() * 10000);
         setInterval(this.updateStocks, (ping > 5000 ? ping : 7500));
     },
-    getInitialState: function() {
+    getInitialState() {
         return {
             symbol: '',
             stocks: []
         };
     },
-    handleChange: function(e) {
+    handleChange(e) {
         this.setState({
             symbol: e.target.value
         });
     },
-    handleSubmit: function(e) {
+    handleSubmit(e) {
         e.preventDefault();
         var queryURL = 'https://finance.google.com/finance/info?client=ig&q=';
         var symbol = this.state.symbol.toUpperCase();
@@ -54,7 +54,7 @@ module.exports = React.createClass({
                 }
             });
     },
-    formatSymbols: function (array) {
+    formatSymbols(array) {
         var stocks = "";
         for (var i = 0; i < array.length; ++i) {
             if (i == array.length - 1) {
@@ -65,7 +65,7 @@ module.exports = React.createClass({
         }
         return stocks;
     },
-    updateStocks: function() {
+    updateStocks() {
         var stocks = this.state.stocks;
         var batch = this.formatSymbols(stocks);
         var queryURL = 'https://finance.google.com/finance/info?client=ig&q=' + batch;
@@ -77,15 +77,13 @@ module.exports = React.createClass({
                 else {
                     var a = res.text.split('');
                     var data = a.slice(3, a.length).join('');
-                    // Add conditional to only display last 6 stocks
                     self.setState({
                         stocks: JSON.parse(data)
                     });
                 }
             });
-        // console.log('This is firing');
     },
-    validateInput: function(input) {
+    validateInput(input) {
         var stocks = this.state.stocks;
         for (var i = 0; i < stocks.length; ++i) {
             if (input === stocks[i].t) {
@@ -93,6 +91,18 @@ module.exports = React.createClass({
             }
         }
         return true;
+    },
+    createCORSRequest(method, url) {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+            xhr.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+            xhr = new XDomainRequest();
+            xhr.open(method, url);
+        } else {
+            xhr = null;
+        }
+        return xhr;
     },
     render: function() {
         return (<div className="main">
