@@ -2,10 +2,12 @@ var express = require('express');
 var path = require('path');
 var webpack = require('webpack');
 var app = express();
+var cors = requre('cors');
 
 var isDevelopment = (process.env.NODE_ENV !== 'production');
 var static_path = path.join(__dirname, 'client');
 
+app.use(cors());
 app.use(express.static(static_path))
     .get('/', function (req, res) {
         res.sendFile('index.html', {
