@@ -32,6 +32,9 @@ module.exports = React.createClass({
 
         this.addStockTicker(search);
         this.updateStocks();
+        this.setState({
+          search: ''
+        });
     },
     addStockTicker(newTicker) {
       var newArray = this.state.tickers.slice();
