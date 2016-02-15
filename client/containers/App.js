@@ -57,15 +57,9 @@ module.exports = React.createClass({
             });
     },
     formatSymbols(array) {
-      var stocks = "";
-      for (var i = 0; i < array.length; ++i) {
-        if (i == array.length - 1) {
-          stocks += array[i].t;
-          break;
-        }
-        stocks += array[i].t + ',';
-      }
-      return stocks;
+      return array.map(function (x) {
+        x = x.t;
+      }).toString();
     },
     updateStocks() {
         var stocks = this.state.stocks;
