@@ -24,7 +24,6 @@ module.exports = React.createClass({
               search: ''
             });
         }
-
         this.addStockTicker(search);
         this.setState({
           search: ''
@@ -49,7 +48,7 @@ module.exports = React.createClass({
                         placeholder="Search..." />
                 </form>
             </div>
-            <DisplayField stocks={ this.state.tickers } />
+            <DisplayField tickers={ this.state.tickers } />
             <Footer />
           </div>
 	      );
