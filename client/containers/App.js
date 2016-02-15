@@ -79,7 +79,10 @@ module.exports = React.createClass({
             });
     },
     validateInput(input) {
-        return this.state.stocks.includes(input);
+        var stockTickers = this.state.stocks.map(function (x) {
+          x = x.t;
+        };
+        return stockTickers.toString();
     },
     render: function() {
         return (
