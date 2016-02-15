@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 module.exports = React.createClass({
-  componentDidMount() {
+  componentWillMount() {
     this.updateStock();
     setInterval(this.updateStock, 60000);
   },
