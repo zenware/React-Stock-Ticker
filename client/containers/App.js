@@ -22,12 +22,12 @@ module.exports = React.createClass({
     },
     handleSubmit(e) {
         e.preventDefault();
-
-        if (!this.validateInput(symbol)) {
+        var search = this.state.search;
+        if (!this.validateInput(search)) {
             alert("It already exists!");
         }
 
-        this.addStockTicker(this.state.search);
+        this.addStockTicker(search);
         this.updateStocks();
     },
     addStockTicker(newTicker) {
