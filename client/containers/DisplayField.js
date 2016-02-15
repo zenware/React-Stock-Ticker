@@ -4,16 +4,16 @@ module.exports = React.createClass({
     render: function() {
         var hyperlink = 'https://www.google.com/finance?q=';
         return (<ul className="display-field">
-            { this.props.stocks.map(x => 
+            { this.props.stocks.map(x =>
                 <li className="list-item">
                     <a href={ hyperlink + x.t }
                         target="_blank">
-                        { x.t } 
+                        { x.t }
                     </a>
-                    <i className={"angle fa fa-angle-double-" +(x.c.indexOf('-') > -1 ? 
-                        'down angle-red' : 
+                    <i className={"angle fa fa-angle-double-" +(x.c.indexOf('-') > -1 ?
+                        'down angle-red' :
                         'up angle-green')}>
-                    </i> 
+                    </i>
                     <br />
                     Exchange: { x.e }
                     <br />
