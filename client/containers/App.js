@@ -10,7 +10,7 @@ module.exports = React.createClass({
     },
     getInitialState() {
       return {
-        symbol: null,
+        symbol: '',
         stocks: []
       };
     },
