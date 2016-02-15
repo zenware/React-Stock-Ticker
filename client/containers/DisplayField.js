@@ -8,7 +8,7 @@ module.exports = React.createClass({
         var stocks = this.props.stocks;
         return (<ul className="display-field">
             { stocks.map(x =>
-                <li key="x.id" className="list-item">
+                <li key="{x.id}" className="list-item">
                     <a href={ hyperlink + x.t }
                         target="_blank">
                         { x.t }
