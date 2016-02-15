@@ -46,12 +46,9 @@ module.exports = React.createClass({
                         symbol: ''
                     });
                 } else {
-                    console.log(res.body.stocks);
-                    var data = res.body.stocks;
-                    stocks.unshift(data);
                     self.setState({
                         symbol: '',
-                        stocks: stocks
+                        stocks: res.body.stocks
                     });
                 }
             });
@@ -65,7 +62,7 @@ module.exports = React.createClass({
         var stocks = this.state.stocks;
         var batch = this.formatSymbols(stocks);
         console.log(batch.length);
-        var queryURL = '/v1/stocks/' + (batch.length ? batch : 'null');
+        var queryURL = '/v1/stocks/' + batch;
         var self = this;
         request
             .get(queryURL)
