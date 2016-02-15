@@ -4,15 +4,10 @@ import DisplayField from './DisplayField'
 import Footer from './Footer'
 
 module.exports = React.createClass({
-    componentDidMount() {
-      this.updateStocks();
-      setInterval(this.updateStocks, this.props.pollInterval);
-    },
     getInitialState() {
       return {
         search: 'GOOG',
         tickers: ['null'],
-        stocks: []
       };
     },
     handleChange(e) {
@@ -31,7 +26,6 @@ module.exports = React.createClass({
         }
 
         this.addStockTicker(search);
-        this.updateStocks();
         this.setState({
           search: ''
         });
@@ -40,22 +34,6 @@ module.exports = React.createClass({
       var newArray = this.state.tickers.slice();
       newArray.push(newTicker);
       this.setState({tickers:newArray});
-    },
-    updateStocks() {
-      var tickers = this.state.tickers;
-      var queryURL = '/v1/stocks/' + tickers.toString();
-      request
-        .get(queryURL)
-        .set('Accept', 'application/json')
-        .end((err, res) => {
-          if (err) {
-            console.log(err);
-          } else {
-            this.setState({
-              stocks: res.body.stocks
-            });
-          }
-      });
     },
     validateInput(input) {
       return !this.state.tickers.includes(input);
@@ -71,7 +49,7 @@ module.exports = React.createClass({
                         placeholder="Search..." />
                 </form>
             </div>
-            <DisplayField stocks={ this.state.stocks } />
+            <DisplayField stocks={ this.state.tickers } />
             <Footer />
           </div>
 	      );
