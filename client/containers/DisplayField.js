@@ -5,9 +5,10 @@ import React, { Component } from 'react'
 module.exports = React.createClass({
     render: function() {
         var hyperlink = 'https://www.google.com/finance?q=';
+        var stocks = this.props.stocks;
         return (<ul className="display-field">
-            { this.props.stocks.map(x =>
-                <li key="x.id" className="list-item">
+            { stocks.map(x =>
+                return <li key="x.id" className="list-item">
                     <a href={ hyperlink + x.t }
                         target="_blank">
                         { x.t }
@@ -22,7 +23,7 @@ module.exports = React.createClass({
                     Price: { x.l }
                     <br />
                     Change: { x.c } ({x.cp}%)
-                </li>
+                </li>;
             ) }
         </ul>)
     }
