@@ -83,8 +83,11 @@ module.exports = React.createClass({
     },
     validateInput(input) {
         return this.state.stocks.map(function (x) {
-          x = x.t;
-        }).includes(input);
+          if (x.t === input) {
+            return false;
+          }
+        });
+        return true;
     },
     render: function() {
         return (
