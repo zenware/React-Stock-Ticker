@@ -57,11 +57,7 @@ module.exports = React.createClass({
             });
     },
     formatSymbols(array) {
-      var stocks = this.state.stocks;
-      var stockTickers = stocks.map(function (x) {
-        x = x.t;
-      });
-      return stockTickers.toString();
+      return array.toString();
     },
     updateStocks() {
         var stocks = this.state.stocks;
