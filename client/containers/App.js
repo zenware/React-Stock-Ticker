@@ -39,7 +39,7 @@ module.exports = React.createClass({
       var tickers = this.state.tickers;
       var queryURL = '/v1/stocks/' + tickers.toString();
       request
-        .get(queryURL)n
+        .get(queryURL)
         .set('Accept', 'application/json')
         .end((err, res) => {
           if (err) {
