@@ -29,7 +29,7 @@ module.exports = React.createClass({
   render() {
     var hyperlink = 'https://www.google.com/finance?q=';
     var stock = this.state.stock;
-    if (stock == undefined) {
+    if (stock === {}) {
       return (<div className='stock-ticker'></div>);
     }
     return (
