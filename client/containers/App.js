@@ -6,7 +6,7 @@ module.exports = React.createClass({
     getInitialState() {
       return {
         search: 'GOOG',
-        tickers: ['null'],
+        tickers: [],
       };
     },
     handleChange(e) {
@@ -28,6 +28,7 @@ module.exports = React.createClass({
           search: ''
         });
     },
+import DisplayField from './DisplayField'
     addStockTicker(newTicker) {
       var newArray = this.state.tickers.slice();
       newArray.push(newTicker);
