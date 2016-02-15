@@ -28,7 +28,6 @@ module.exports = React.createClass({
           search: ''
         });
     },
-import DisplayField from './DisplayField'
     addStockTicker(newTicker) {
       var newArray = this.state.tickers.slice();
       newArray.push(newTicker);
