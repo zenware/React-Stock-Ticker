@@ -12,7 +12,7 @@ module.exports = React.createClass({
       return {
         search: 'GOOG',
         tickers: [],
-        stocks []
+        stocks: []
       };
     },
     handleChange(e) {
@@ -25,9 +25,6 @@ module.exports = React.createClass({
 
         if (!this.validateInput(symbol)) {
             alert("It already exists!");
-            return this.setState({
-                : ''
-            });
         }
 
         this.addStockTicker(this.state.search);
