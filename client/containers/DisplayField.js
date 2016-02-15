@@ -8,9 +8,11 @@ module.exports = React.createClass({
         return;
       }
       return (
-        <ul className="display-field">
+        <div className="display-field">
+        <ul>
           { tickers.map(x => <StockTicker ticker={x}/>) }
         </ul>
+        </div>
       )
     }
 });
