@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import request from 'superagent'
 import DisplayField from './DisplayField'
 import Footer from './Footer'
 
