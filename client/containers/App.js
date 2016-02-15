@@ -25,6 +25,9 @@ module.exports = React.createClass({
         var search = this.state.search;
         if (!this.validateInput(search)) {
             alert("It already exists!");
+            return this.setState({
+              search: ''
+            });
         }
 
         this.addStockTicker(search);
