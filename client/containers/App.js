@@ -11,7 +11,7 @@ module.exports = React.createClass({
     getInitialState() {
       return {
         search: 'GOOG',
-        tickers: [],
+        tickers: ['null't ],
         stocks: []
       };
     },
