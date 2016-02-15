@@ -8,6 +8,12 @@ module.exports = React.createClass({
         var ping = Math.floor(Math.random() * 10000);
         setInterval(this.updateStocks, (ping > 5000 ? ping : 7500));
     },
+    getInitialState() {
+      return {
+        symbol: null,
+        stocks: []
+      };
+    },
     handleChange(e) {
         this.setState({
             symbol: e.target.value
