@@ -5,7 +5,7 @@ module.exports = React.createClass({
     render() {
       var tickers = this.props.tickers;
       if (tickers.length < 1) {
-        return;
+        return <div className="displa-field"></div>;
       }
       return (
         <div className="display-field">
