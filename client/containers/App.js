@@ -57,7 +57,10 @@ module.exports = React.createClass({
             });
     },
     formatSymbols(array) {
-        return array.toString();
+        var stockTickers = this.state.stocks.map(function (x) {
+          x = x.t;
+        });
+        return stockTickers.toString();
     },
     updateStocks() {
         var stocks = this.state.stocks;
@@ -79,10 +82,9 @@ module.exports = React.createClass({
             });
     },
     validateInput(input) {
-        var stockTickers = this.state.stocks.map(function (x) {
+        return this.state.stocks.map(function (x) {
           x = x.t;
-        });
-        return stockTickers.toString();
+        }).includes(input);
     },
     render: function() {
         return (
