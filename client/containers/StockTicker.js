@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import request from 'superagent'
 
 module.exports = React.createClass({
-  componentWillMount() {
+  componentDidMount() {
     this.updateStock();
     setInterval(this.updateStock, 60000);
   },
@@ -29,9 +29,12 @@ module.exports = React.createClass({
   render() {
     var hyperlink = 'https://www.google.com/finance?q=';
     var stock = this.state.stock;
+    if (stock == undefined) {
+      return (<div className='stock-ticker'></div>);
+    }
     return (
-      <li className="list-item">
       <div className='stock-ticker'>
+      <li className="list-item">
         <a href={ hyperlink + stock.t }
           target="_blank">
           { stock.t }
@@ -46,8 +49,8 @@ module.exports = React.createClass({
         Price: { stock.l }
         <br />
         Change: { stock.c } ({stock.cp}%)
-      </div>
       </li>
+      </div>
     )
   }
 });
