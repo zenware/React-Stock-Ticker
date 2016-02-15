@@ -10,13 +10,19 @@ module.exports = React.createClass({
     },
     getInitialState() {
       return {
+        search: '',
         stocks: []
       };
+    },
+    handleChange(e) {
+      this.setState({
+        search: e.target.text;
+      });
     },
     handleSubmit(e) {
         e.preventDefault();
         var queryURL = '/v1/stocks/';
-        var symbol = e.target.value.toUpperCase();
+        var symbol = this.state.search.toUpperCase();
         var stocks = this.state.stocks;
         var self = this;
 
@@ -86,7 +92,7 @@ module.exports = React.createClass({
                 <form className="container-1" onSubmit={ this.handleSubmit }>
                     <span className="search-icon"><i className="fa fa-search"></i></span>
                     <input id="search" type="text"
-                        value='' onChange={ this.handleChange }
+                        value={this.state.search} onChange={ this.handleChange }
                         placeholder="Search..." />
                 </form>
             </div>
