@@ -6,7 +6,7 @@ module.exports = React.createClass({
       var tickers = this.props.tickers;
       return (
         <ul className="display-field">
-          { tickers.map(x => <StockTicker ticker={x}/>) }
+          { tickers.map(x => <StockTicker key={x} ticker={x}/>) }
         </ul>
       )
     }
