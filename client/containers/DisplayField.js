@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import StockTicker from './StockTicker'
+import StockTickerList from './StockTickerList'
 
 module.exports = React.createClass({
     render() {
