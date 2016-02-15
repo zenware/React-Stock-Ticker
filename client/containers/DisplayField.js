@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import StockTickerList from './StockTickerList'
+import StockTicker from './StockTicker'
 
 module.exports = React.createClass({
     render() {
@@ -9,7 +9,13 @@ module.exports = React.createClass({
       return (
         <div className="display-field">
         <ul>
-          { <StockTickerList tickers={this.props.tickers}/> }
+          {
+            return this.props.tickers.map(
+              x => {
+                <StockTicker key={x} ticker={x}/>
+              }
+            )
+          }
         </ul>
         </div>
       )
