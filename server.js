@@ -16,8 +16,8 @@ app.use(express.static(static_path))
         });
     })
     .get('/v1/stocks/:stock_tickers', function (req, res) {
-	gfinance.get(req.params.stock_tickers, function (err, apires){
-	  res.json({message: apires});
+	gfinance.get(req.params.stock_tickers, function (err, apires) {
+	  res.json({ message: apires });
 	});
     })
     .listen(process.env.PORT || 8080, function (err) {

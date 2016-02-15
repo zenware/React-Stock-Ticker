@@ -43,8 +43,8 @@ module.exports = React.createClass({
                         symbol: ''
                     });
                 } else {
-                    var a = res.text.split('');
-                    var data = JSON.parse(a.slice(6, a.length - 2).join(''));
+                    var a = res.text['message'].split('');
+                    var data = a.slice(6, a.length - 2).join('');
                     stocks.unshift(data);
                     if (stocks.length > 6) stocks = stocks.slice(0, 6);
                     self.setState({
@@ -75,10 +75,10 @@ module.exports = React.createClass({
             .end(function(err, res) {
                 if (err) { console.log(err); }
                 else {
-                    var a = res.text.split('');
+                    var a = res.text['message'].split('');
                     var data = a.slice(3, a.length).join('');
                     self.setState({
-                        stocks: JSON.parse(data)
+                        stocks: data
                     });
                 }
             });
@@ -119,3 +119,4 @@ module.exports = React.createClass({
         </div>);
     }
 });
+
