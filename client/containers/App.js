@@ -10,7 +10,7 @@ module.exports = React.createClass({
     },
     getInitialState() {
       return {
-        search: '',
+        search: 'GOOG',
         stocks: []
       };
     },
