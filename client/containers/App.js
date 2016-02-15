@@ -11,12 +11,12 @@ module.exports = React.createClass({
   },
   handleChange(e) {
     this.setState({
-      search: e.target.value.toUpperCase()
+      search: e.target.value
     });
   },
   handleSubmit(e) {
       e.preventDefault();
-      var search = this.state.search;
+      var search = this.state.search.toUpperCase();
       if (!this.validateInput(search)) {
           alert("It already exists!");
           return this.setState({
@@ -43,7 +43,7 @@ module.exports = React.createClass({
           <form className="container-1" onSubmit={ this.handleSubmit }>
             <span className="search-icon"><i className="fa fa-search"></i></span>
             <input id="search" type="text"
-                  value={this.state.search} onChange={ this.handleChange }
+                  value={ this.state.search } onChange={ this.handleChange }
                   placeholder="Search..." />
           </form>
         </div>
