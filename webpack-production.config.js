@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, './client'),
     filename: 'bundle.js',
+    sourceMapFilename: 'bundle.js.map',
     publicPath: '/client/'
   },
   plugins: [

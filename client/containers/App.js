@@ -46,11 +46,9 @@ module.exports = React.createClass({
                         symbol: ''
                     });
                 } else {
-                    console.log(res.text);
-                    var a = res.text['stocks'].split('');
-                    var data = a.slice(6, a.length - 2).join('');
+                    console.log(res.body.stocks);
+                    var data = res.body.stocks;
                     stocks.unshift(data);
-                    if (stocks.length > 6) stocks = stocks.slice(0, 6);
                     self.setState({
                         symbol: '',
                         stocks: stocks
@@ -64,36 +62,24 @@ module.exports = React.createClass({
     updateStocks() {
         var stocks = this.state.stocks;
         var batch = this.formatSymbols(stocks);
-        var queryURL = '/v1/stocks/' + batch;
+        console.log(batch.length);
+        var queryURL = '/v1/stocks/' + (batch.length ? batch : 'null');
         var self = this;
         request
             .get(queryURL)
             .set('Accept', 'application/json')
             .end(function(err, res) {
-                if (err) { console.log(err); }
-                else {
-                    var a = res.text['stocks'].split('');
-                    var data = a.slice(3, a.length).join('');
+                if (err) {
+                  console.log(err);
+                } else {
                     self.setState({
-                        stocks: data
+                        stocks: res.body.stocks
                     });
                 }
             });
     },
     validateInput(input) {
         return this.state.stocks.includes(input);
-    },
-    createCORSRequest(method, url) {
-        var xhr = new XMLHttpRequest();
-        if ("withCredentials" in xhr) {
-            xhr.open(method, url, true);
-        } else if (typeof XDomainRequest != "undefined") {
-            xhr = new XDomainRequest();
-            xhr.open(method, url);
-        } else {
-            xhr = null;
-        }
-        return xhr;
     },
     render: function() {
         return (
