@@ -30,8 +30,7 @@ module.exports = React.createClass({
     var hyperlink = 'https://www.google.com/finance?q=';
     var stock = this.state.stock;
     return (
-      <div className='list-item'>
-      <li key="{this.props.ticker}" className="list-item">
+      <div className='stock-ticker'>
         <a href={ hyperlink + stock.t }
           target="_blank">
           { stock.t }
@@ -46,7 +45,6 @@ module.exports = React.createClass({
         Price: { stock.l }
         <br />
         Change: { stock.c } ({stock.cp}%)
-      </li>
       </div>
     )
   }

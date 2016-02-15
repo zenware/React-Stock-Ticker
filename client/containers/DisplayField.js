@@ -5,12 +5,12 @@ module.exports = React.createClass({
     render() {
       var tickers = this.props.tickers;
       if (tickers.length < 1) {
-        return <div className="displa-field"></div>;
+        return <div className="display-field"></div>;
       }
       return (
         <div className="display-field">
         <ul>
-          { tickers.map(x => <StockTicker ticker={x}/>) }
+          { <StockTickerList tickers={x}/> }
         </ul>
         </div>
       )
