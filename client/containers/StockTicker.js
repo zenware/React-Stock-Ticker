@@ -30,6 +30,7 @@ module.exports = React.createClass({
     var hyperlink = 'https://www.google.com/finance?q=';
     var stock = this.state.stock;
     return (
+      <li className="list-item">
       <div className='stock-ticker'>
         <a href={ hyperlink + stock.t }
           target="_blank">
@@ -46,6 +47,7 @@ module.exports = React.createClass({
         <br />
         Change: { stock.c } ({stock.cp}%)
       </div>
+      </li>
     )
   }
 });
