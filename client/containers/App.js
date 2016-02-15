@@ -16,7 +16,7 @@ module.exports = React.createClass({
     },
     handleChange(e) {
       this.setState({
-        search: e.target.text;
+        search: e.target.value;
       });
     },
     handleSubmit(e) {
