@@ -4,6 +4,6 @@ import React from 'react'
 import App from './containers/App'
 
 ReactDOM.render(
-    <App/>,
+    <App pollInterval={7500}/>,
     document.getElementById('root')
 )

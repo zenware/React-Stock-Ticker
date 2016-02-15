@@ -5,87 +5,59 @@ import Footer from './Footer'
 
 module.exports = React.createClass({
     componentDidMount() {
-        var ping = Math.floor(Math.random() * 10000);
-        setInterval(this.updateStocks, (ping > 5000 ? ping : 7500));
+      this.updateStocks();
+      setInterval(this.updateStocks, this.props.pollInterval);
     },
     getInitialState() {
       return {
         search: 'GOOG',
-        stocks: []
+        tickers: [],
+        stocks []
       };
     },
     handleChange(e) {
       this.setState({
-        search: e.target.value;
+        search: e.target.value.toUpperCase()
       });
     },
     handleSubmit(e) {
         e.preventDefault();
-        var queryURL = '/v1/stocks/';
-        var symbol = this.state.search.toUpperCase();
-        var stocks = this.state.stocks;
-        var self = this;
 
         if (!this.validateInput(symbol)) {
             alert("It already exists!");
             return this.setState({
-                symbol: ''
+                : ''
             });
         }
 
-        request
-            .get(queryURL + symbol)
-            .set('Accept', 'application/json')
-            .end(function(err, res) {
-                if (err) {
-                    console.log(err);
-                }
-                if (res.status === 400) {
-                    alert("Stock symbol doesn't exist, try another one.");
-                    self.setState({
-                        symbol: ''
-                    });
-                } else {
-                    self.setState({
-                        symbol: '',
-                        stocks: res.body.stocks
-                    });
-                }
-            });
+        this.addStockTicker(this.state.search);
+        this.updateStocks();
     },
-    formatSymbols(array) {
-      return array.map(function (x) {
-        x = x.t;
-      }).toString();
+    addStockTicker(newTicker) {
+      var newArray = this.state.tickers.slice();
+      newArray.push(newTicker);
+      this.setState({tickers:newArray});
     },
     updateStocks() {
-        var stocks = this.state.stocks;
-        var batch = this.formatSymbols(stocks);
-        console.log(batch.length);
-        var queryURL = '/v1/stocks/' + batch;
-        var self = this;
-        request
-            .get(queryURL)
-            .set('Accept', 'application/json')
-            .end(function(err, res) {
-                if (err) {
-                  console.log(err);
-                } else {
-                    self.setState({
-                        stocks: res.body.stocks
-                    });
-                }
+      var tickers = this.state.tickers;
+      var queryURL = '/v1/stocks/' + tickers.toString();
+      request
+        .get(queryURL)n
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          if (err) {
+            console.log(err);
+          } else {
+            this.setState({
+              stocks: res.body.stocks
             });
+          }
+      });
     },
     validateInput(input) {
-        return this.state.stocks.map(function (x) {
-          if (x.t === input) {
-            return false;
-          }
-        });
-        return true;
+      return !this.state.tickers.includes(input);
     },
-    render: function() {
+    render() {
         return (
 	        <div className="main">
             <div className="box">

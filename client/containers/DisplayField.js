@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+// TODO: This should be actually where the pollInterval property gets set and the API called to populate with some results, and then the other react class <App> will just create more of these children...
+// there could also be a delete button that allows these to be removed on the fly.
 module.exports = React.createClass({
     render: function() {
         var hyperlink = 'https://www.google.com/finance?q=';
