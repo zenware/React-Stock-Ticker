@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import StockTicker from './StockTicker'
 import request from 'superagent'
 
 module.exports = React.createClass({
