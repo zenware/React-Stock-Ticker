@@ -22,7 +22,7 @@ module.exports = React.createClass({
   },
   render() {
     var stocks = this.state.stocks;
-    if (stocks.length === 0) {
+    if (!stocks) {
       return <div className="display-field"></div>;
     } else {
       return (
