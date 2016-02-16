@@ -17,7 +17,7 @@ module.exports = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     var search = this.state.search.toUpperCase();
-    if (!this.state.tickers.indexOf(search))
+    if (!this.state.tickers.indexOf(search)) {
       alert("It already exists!");
       this.setState({
         search: ''
