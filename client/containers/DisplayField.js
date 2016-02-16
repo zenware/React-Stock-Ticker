@@ -21,14 +21,13 @@ module.exports = React.createClass({
     });
   },
   render() {
-    var stocks = this.state.stocks;
-    if (typeof stocks == 'null') {
+    if (!this.state.stocks) {
       return <div className="display-field"></div>;
     } else {
       return (
         <div className="display-field">
         <ul>
-          { stocks.map(x => <StockTicker key={x.t} stock={x}/>)}
+          { this.state.stocks.map(x => <StockTicker key={x.t} stock={x}/>)}
         </ul>
         </div>
       );
