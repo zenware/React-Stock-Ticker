@@ -13,11 +13,6 @@ module.exports = React.createClass({
       stock: {}
     };
   },
-  shouldComponentUpdate(newProps, newState) {
-    if (newProps === this.props && newState === this.state) {
-      return false;
-    }
-  },
   updateStock() {
     request
       .get(`/v1/stocks/${this.props.ticker}`)
@@ -30,8 +25,7 @@ module.exports = React.createClass({
             stock: res.body.stocks[0]
           });
         }
-    });
-
+    }).bind(this);
   },
   render() {
     var hyperlink = 'https://www.google.com/finance?q=';

@@ -2,20 +2,18 @@ import React, { Component } from 'react'
 import StockTicker from './StockTicker'
 
 module.exports = React.createClass({
-    render() {
-      if (this.props.tickers.length === 0) {
-        return <div className="display-field"></div>;
-      }
+  render() {
+    var tickers = this.props.tickers;
+    if (tickers.length === 0) {
+      return <div className="display-field"></div>;
+    } else {
       return (
         <div className="display-field">
         <ul>
-          {
-            this.props.tickers.map(x => {
-              return <StockTicker key={x} ticker={x}/>
-            })
-          }
+          { tickers.map(x => <StockTicker key={x} ticker={x}/>)}
         </ul>
         </div>
-      )
+      );
     }
+  }
 });
