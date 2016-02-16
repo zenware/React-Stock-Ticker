@@ -25,7 +25,7 @@ module.exports = React.createClass({
             stock: res.body.stocks[0]
           });
         }
-    }).bind(this);
+    }.bind(this));
   },
   render() {
     var hyperlink = 'https://www.google.com/finance?q=';
