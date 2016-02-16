@@ -38,7 +38,7 @@ module.exports = React.createClass({
     return !this.state.tickers.includes(input);
   },
   render() {
-    return (
+   return (
       <div className="main">
         <div className="box">
           <form className="container-1" onSubmit={ this.handleSubmit }>
