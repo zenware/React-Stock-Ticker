@@ -12,19 +12,19 @@ module.exports = React.createClass({
   handleChange(e) {
     this.setState({
       search: e.target.value,
-      tickers: this.state.tickers
     });
   },
   handleSubmit(e) {
-      e.preventDefault();
-      var search = this.state.search.toUpperCase();
-      if (!this.validateInput(search)) {
-          alert("It already exists!");
-          return this.setState({
-            search: ''
-          });
-      }
+    e.preventDefault();
+    var search = this.state.search.toUpperCase();
+    if (!this.validateInput(search)) {
+      alert("It already exists!");
+      this.setState({
+        search: ''
+      });
+    } else {
       this.addStockTicker(search);
+    }
   },
   addStockTicker(newTicker) {
     var newArray = this.state.tickers.slice();
