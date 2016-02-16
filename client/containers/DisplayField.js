@@ -6,6 +6,10 @@ module.exports = React.createClass({
     this.updateStocks();
     setInterval(this.updateStocks, 60000);
   },
+  getInitialState() {
+    return {
+      stocks: [],
+    };
   updateStocks() {
     request
       .get(`/v1/stocks/${this.props.tickers}`)
