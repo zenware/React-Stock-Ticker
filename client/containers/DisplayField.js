@@ -8,7 +8,7 @@ module.exports = React.createClass({
   },
   getInitialState() {
     return {
-      stocks: [],
+      stocks: []
     };
   updateStocks() {
     request
