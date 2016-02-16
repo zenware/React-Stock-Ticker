@@ -24,7 +24,7 @@ module.exports = React.createClass({
   getInitialState() {
     return {
       search: '',
-      tickers: new Set(),
+      tickers: [],
       stocks: {}
     };
   },
@@ -36,15 +36,19 @@ module.exports = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     var search = this.state.search.toUpperCase();
-    this.addStockTicker(search);
-    this.updateStocks();
+    if (this.state.tickers.indexOf(search) === -1) {
+      this.addStockTicker(search);
+      this.updateStocks();
+    } else {
+      alert('exists')
+    }
   },
   addStockTicker(newTicker) {
     var newArray = this.state.tickers.slice();
     newArray.push(newTicker)
     this.setState({
       search: '',
-      tickers: new Set(newArray)
+      tickers: newArray
     })
   },
   render() {
