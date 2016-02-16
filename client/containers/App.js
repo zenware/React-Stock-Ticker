@@ -17,7 +17,7 @@ module.exports = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     var search = this.state.search.toUpperCase();
-    if (this.validateInput(search)) {
+    if (this.alreadyAddedTicker(search)) {
       alert("It already exists!");
       this.setState({
         search: ''
@@ -34,8 +34,8 @@ module.exports = React.createClass({
       tickers: newArray
     });
   },
-  validateInput(input) {
-    return !this.state.tickers.includes(input);
+  alreadyAddedTicker(input) {
+    return this.state.tickers.includes(input);
   },
   render() {
    return (
