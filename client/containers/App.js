@@ -3,10 +3,29 @@ import DisplayField from './DisplayField'
 import Footer from './Footer'
 
 module.exports = React.createClass({
+  componentDidMount() {
+    setInterval(this.updateStocks, 60000);
+  },
+  updateStocks() {
+    var query = this.state.tickers.toString();
+    request
+      .get('/v1/stocks/' + query)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err) {
+          console.log(err);
+        } else {
+          this.setState({
+            stocks: res.body.stocks
+          });
+        }
+    });
+  },
   getInitialState() {
     return {
       search: '',
-      tickers: ['null']
+      tickers: [],
+      stocks: {}
     };
   },
   handleChange(e) {
@@ -17,21 +36,14 @@ module.exports = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     var search = this.state.search.toUpperCase();
-    if (!this.state.tickers.indexOf(search)) {
-      alert("It already exists!");
-      this.setState({
-        search: ''
-      });
-    } else {
-      this.addStockTicker(search);
-    }
+    this.addStockTicker(search);
   },
   addStockTicker(newTicker) {
-    var newArray = this.state.tickers.slice()
+    var newArray = this.state.tickers.slice();
     newArray.push(newTicker)
     this.setState({
       search: '',
-      tickers: newArray
+      tickers: new Set(newArray);
     })
   },
   render() {
@@ -46,7 +58,7 @@ module.exports = React.createClass({
                    placeholder="Search..." />
           </form>
         </div>
-        <DisplayField tickers={ this.state.tickers } />
+        <DisplayField stocks={ this.state.stocks } />
         <Footer />
       </div>
     );
