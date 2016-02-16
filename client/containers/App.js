@@ -6,7 +6,7 @@ module.exports = React.createClass({
   getInitialState() {
     return {
       search: '',
-      tickers: []
+      tickers: ['null']
     };
   },
   handleChange(e) {
