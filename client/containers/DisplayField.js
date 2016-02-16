@@ -12,8 +12,9 @@ module.exports = React.createClass({
     };
   },
   updateStocks() {
+    var query = this.props.tickers.toString();
     request
-      .get(`/v1/stocks/${this.props.tickers.toString()}`)
+      .get('/v1/stocks/' + query)
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {
