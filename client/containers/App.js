@@ -43,7 +43,7 @@ module.exports = React.createClass({
     newArray.push(newTicker)
     this.setState({
       search: '',
-      tickers: new Set(newArray);
+      tickers: new Set(newArray)
     })
   },
   render() {
