@@ -13,7 +13,7 @@ module.exports = React.createClass({
   },
   updateStocks() {
     request
-      .get(`/v1/stocks/${this.props.tickers}`)
+      .get(`/v1/stocks/${this.props.tickers.toString()}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {
