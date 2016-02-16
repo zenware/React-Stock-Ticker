@@ -14,6 +14,7 @@ module.exports = React.createClass({
     };
   },
   updateStock() {
+    var self = this;
     request
       .get(`/v1/stocks/${this.props.ticker}`)
       .set('Accept', 'application/json')
@@ -21,11 +22,11 @@ module.exports = React.createClass({
         if (err) {
           console.log(err);
         } else {
-          this.setState({
+          self.setState({
             stock: res.body.stocks[0]
           });
         }
-    }.bind(this));
+    });
   },
   render() {
     var hyperlink = 'https://www.google.com/finance?q=';
