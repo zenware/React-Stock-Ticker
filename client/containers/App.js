@@ -25,7 +25,7 @@ module.exports = React.createClass({
     return {
       search: '',
       tickers: [],
-      stocks: {}
+      stocks: []
     };
   },
   handleChange(e) {
