@@ -10,6 +10,7 @@ module.exports = React.createClass({
     return {
       stocks: []
     };
+  },
   updateStocks() {
     request
       .get(`/v1/stocks/${this.props.tickers}`)
