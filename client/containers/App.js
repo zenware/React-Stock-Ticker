@@ -5,13 +5,14 @@ import Footer from './Footer'
 module.exports = React.createClass({
   getInitialState() {
     return {
-      search: 'GOOG',
+      search: '',
       tickers: [],
     };
   },
   handleChange(e) {
     this.setState({
-      search: e.target.value
+      search: e.target.value,
+      tickers: this.state.tickers
     });
   },
   handleSubmit(e) {
@@ -24,14 +25,14 @@ module.exports = React.createClass({
           });
       }
       this.addStockTicker(search);
-      this.setState({
-        search: ''
-      });
   },
   addStockTicker(newTicker) {
     var newArray = this.state.tickers.slice();
     newArray.push(newTicker);
-    this.setState({tickers:newArray});
+    this.setState({
+      search: '',
+      tickers: newArray
+    });
   },
   validateInput(input) {
     return !this.state.tickers.includes(input);
@@ -43,8 +44,9 @@ module.exports = React.createClass({
           <form className="container-1" onSubmit={ this.handleSubmit }>
             <span className="search-icon"><i className="fa fa-search"></i></span>
             <input id="search" type="text"
-                  value={ this.state.search } onChange={ this.handleChange }
-                  placeholder="Search..." />
+                   value={ this.state.search }
+                   onChange={ this.handleChange }
+                   placeholder="Search..." />
           </form>
         </div>
         <DisplayField tickers={ this.state.tickers } />

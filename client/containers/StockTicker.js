@@ -11,6 +11,11 @@ module.exports = React.createClass({
       stock: {}
     };
   },
+  shouldComponentUpdate(newProps, newState) {
+    if (newProps === this.props && newState === this.state) {
+      return false;
+    }
+  },
   updateStock() {
     request
       .get(`/v1/stocks/${this.props.ticker}`)
