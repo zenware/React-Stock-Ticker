@@ -6,18 +6,18 @@ module.exports = React.createClass({
   getInitialState() {
     return {
       search: '',
-      tickers: [],
+      tickers: []
     };
   },
   handleChange(e) {
     this.setState({
-      search: e.target.value,
+      search: e.target.value
     });
   },
   handleSubmit(e) {
     e.preventDefault();
     var search = this.state.search.toUpperCase();
-    if (this.alreadyAddedTicker(search)) {
+    if (!this.state.tickers.indexOf(search))
       alert("It already exists!");
       this.setState({
         search: ''
@@ -27,15 +27,12 @@ module.exports = React.createClass({
     }
   },
   addStockTicker(newTicker) {
-    var newArray = this.state.tickers.slice();
-    newArray.push(newTicker);
+    var newArray = this.state.tickers.slice()
+    newArray.push(newTicker)
     this.setState({
       search: '',
       tickers: newArray
-    });
-  },
-  alreadyAddedTicker(input) {
-    return this.state.tickers.includes(input);
+    })
   },
   render() {
    return (
