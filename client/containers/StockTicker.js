@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import request from 'superagent'
 
 module.exports = React.createClass({
-  componentDidMount() {
+  componentWillMount() {
     this.updateStock();
+  },
+  componentDidMount() {
     setInterval(this.updateStock, 60000);
   },
   getInitialState() {
@@ -36,26 +38,27 @@ module.exports = React.createClass({
     var stock = this.state.stock;
     if (stock === {}) {
       return (<div className='stock-ticker'></div>);
+    } else {
+      return (
+        <div className='stock-ticker'>
+        <li className="list-item">
+          <a href={ hyperlink + stock.t }
+            target="_blank">
+            { stock.t }
+          </a>
+          <i className={"angle fa fa-angle-double-" +(stock.c.indexOf('-') > -1 ?
+              'down angle-red' :
+              'up angle-green')}>
+          </i>
+          <br />
+          Exchange: { stock.e }
+          <br />
+          Price: { stock.l }
+          <br />
+          Change: { stock.c } ({stock.cp}%)
+        </li>
+        </div>
+      );
     }
-    return (
-      <div className='stock-ticker'>
-      <li className="list-item">
-        <a href={ hyperlink + stock.t }
-          target="_blank">
-          { stock.t }
-        </a>
-        <i className={"angle fa fa-angle-double-" +(stock.c.indexOf('-') > -1 ?
-            'down angle-red' :
-            'up angle-green')}>
-        </i>
-        <br />
-        Exchange: { stock.e }
-        <br />
-        Price: { stock.l }
-        <br />
-        Change: { stock.c } ({stock.cp}%)
-      </li>
-      </div>
-    )
   }
 });
