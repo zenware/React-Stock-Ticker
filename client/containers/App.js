@@ -24,7 +24,7 @@ module.exports = React.createClass({
   getInitialState() {
     return {
       search: '',
-      tickers: [],
+      tickers: new Set(),
       stocks: {}
     };
   },
@@ -37,6 +37,7 @@ module.exports = React.createClass({
     e.preventDefault();
     var search = this.state.search.toUpperCase();
     this.addStockTicker(search);
+    this.updateStocks();
   },
   addStockTicker(newTicker) {
     var newArray = this.state.tickers.slice();
