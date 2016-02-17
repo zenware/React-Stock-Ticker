@@ -5,7 +5,7 @@ import request from 'superagent'
 
 module.exports = React.createClass({
   componentDidMount() {
-    setInterval(this.updateStocks, 60000);
+    setInterval(this.updateStocks, 30000);
   },
   updateStocks() {
     var query = this.state.tickers.toString();
@@ -25,7 +25,7 @@ module.exports = React.createClass({
   getInitialState() {
     return {
       search: '',
-      tickers: [],
+      tickers: ['null'],
       stocks: []
     };
   },
@@ -39,10 +39,10 @@ module.exports = React.createClass({
     var search = this.state.search.toUpperCase();
     if (this.state.tickers.indexOf(search) === -1) {
       this.addStockTicker(search);
-      this.updateStocks();
     } else {
       alert('exists')
     }
+    this.updateStocks();
   },
   addStockTicker(newTicker) {
     var newArray = this.state.tickers.slice();
