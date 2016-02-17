@@ -8,7 +8,7 @@ module.exports = React.createClass({
       <ul>
         {
           this.props.stocks.map(x =>
-            <StockTicker className='list-item' key={x.t} stock={x}/>
+            <StockTicker key={x.t} stock={x}/>
           )
         }
       </ul>
