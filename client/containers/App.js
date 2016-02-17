@@ -53,6 +53,22 @@ module.exports = React.createClass({
     })
   },
   render() {
+   if (this.state.stocks == undefined) {
+     return (
+      <div className="main">
+        <div className="box">
+          <form className="container-1" onSubmit={ this.handleSubmit }>
+            <span className="search-icon"><i className="fa fa-search"></i></span>
+            <input id="search" type="text"
+                   value={ this.state.search }
+                   onChange={ this.handleChange }
+                   placeholder="Search..." />
+          </form>
+        </div>
+        <Footer />
+      </div>
+     );
+   }
    return (
       <div className="main">
         <div className="box">
