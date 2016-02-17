@@ -6,7 +6,11 @@ module.exports = React.createClass({
     return (
       <div className="display-field">
       <ul>
-        { this.props.stocks.map(x => <StockTicker key={x.t} stock={x}/>)}
+        {
+          this.props.stocks.map(x =>
+            <StockTicker className='list-item' key={x.t} stock={x}/>
+          )
+        }
       </ul>
       </div>
     );

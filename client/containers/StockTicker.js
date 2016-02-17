@@ -5,7 +5,7 @@ module.exports = React.createClass({
     var hyperlink = 'https://www.google.com/finance?q=';
     var stock = this.props.stock;
     return (
-      <li className="list-item">
+      <li>
         <a href={ hyperlink + stock.t }
           target="_blank">
           { stock.t }
