@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DisplayField from './DisplayField'
 import Footer from './Footer'
+import request from 'superagent'
 
 module.exports = React.createClass({
   componentDidMount() {
