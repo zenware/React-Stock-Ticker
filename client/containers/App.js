@@ -40,7 +40,7 @@ module.exports = React.createClass({
     if (this.state.tickers.indexOf(search) === -1) {
       this.addStockTicker(search);
     } else {
-      alert('exists')
+      alert(`Ticker ${search} already exists.`)
     }
     this.updateStocks();
   },
