@@ -5,7 +5,7 @@ import request from 'superagent'
 
 module.exports = React.createClass({
   componentDidMount() {
-    setInterval(this.updateStocks, 30000);
+    setInterval(this.updateStocks, 1000);
   },
   updateStocks() {
     var query = this.state.tickers.toString();
