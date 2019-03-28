@@ -26,7 +26,7 @@
     "gfinance": "0.0.2",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
-    "superagent": "^1.6.1",
+    "superagent": "^5.0.0",
     "webpack": "^1.12.10"
   },
   "devDependencies": {
